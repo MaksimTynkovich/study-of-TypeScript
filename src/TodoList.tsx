@@ -1,9 +1,14 @@
 import React from 'react';
+import title from './App'
 
-function TodoList() {
+type TodoListPropsType = {
+    title: string
+}
+
+function TodoList(props: TodoListPropsType) {
     return (
         <div>
-            <h3>What to learn</h3>
+            <h3>{props.title}</h3>
             <div>
                 <input />
                 <button>+</button>
