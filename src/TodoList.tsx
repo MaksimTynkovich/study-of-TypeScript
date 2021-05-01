@@ -10,7 +10,7 @@ type TodoListPropsType = {
 
 function TodoList(props: TodoListPropsType) {
     const tasks = props.tasks.map(t => {
-        return <li key={t.id}><input type="checkbox" checked={t.isDone} /> <span>{t.title}</span><button>X</button></li>
+        return <li key={t.id}><input type="checkbox" checked={t.isDone} /> <span>{t.title}</span><button onClick={()=>props.removeTask(t.id)}>X</button></li>
     })
     const setAllFilterValue = () => props.changeTodoListFilter("all")
     const setActiveFilterValue = () => props.changeTodoListFilter("active")
