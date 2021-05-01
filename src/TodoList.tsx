@@ -11,6 +11,9 @@ function TodoList(props: TodoListPropsType) {
     const tasks = props.tasks.map(t => {
         return <li key={t.id}><input type="checkbox" checked={t.isDone} /> <span>{t.title}</span></li>
     })
+    const setAllFilterValue = () => props.changeTodoListFilter("all")
+    const setActiveFilterValue = () => props.changeTodoListFilter("active")
+    const setCompletedFilterValue = () => props.changeTodoListFilter("completed")
     return (
         <div>
             <h3>{props.title}</h3>
@@ -22,9 +25,9 @@ function TodoList(props: TodoListPropsType) {
                {tasks}
             </ul>
             <div>
-                <button onClick={()=>{props.changeTodoListFilter("all")}}>All</button>
-                <button onClick={()=>{props.changeTodoListFilter("active")}}>Active</button>
-                <button onClick={()=>{props.changeTodoListFilter("completed")}}>Completed</button>
+                <button onClick={setAllFilterValue}>All</button>
+                <button onClick={setActiveFilterValue}>Active</button>
+                <button onClick={setCompletedFilterValue}>Completed</button>
             </div>
         </div>
     )
