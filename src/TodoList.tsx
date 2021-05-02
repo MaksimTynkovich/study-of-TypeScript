@@ -5,7 +5,7 @@ type TodoListPropsType = {
     title: string
     tasks: Array<TaskType>
     changeTodoListFilter: (newFilterValue: FilterValuesType) => void
-    removeTask: (taskID: number) => void
+    removeTask: (taskID: string) => void
 }
 
 function TodoList(props: TodoListPropsType) {
