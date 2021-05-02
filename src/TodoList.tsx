@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {FilterValuesType, TaskType} from './App'
 
 type TodoListPropsType = {
@@ -17,12 +17,13 @@ function TodoList(props: TodoListPropsType) {
     const setAllFilterValue = () => props.changeTodoListFilter("all")
     const setActiveFilterValue = () => props.changeTodoListFilter("active")
     const setCompletedFilterValue = () => props.changeTodoListFilter("completed")
-    const addTask = () => props.addTask('New Task')
+    const addTask = () => props.addTask(title)
+    let [title, setTitle] = useState('')
     return (
         <div>
             <h3>{props.title}</h3>
             <div>
-                <input />
+                <input value={title} onChange={(e) =>{setTitle(e.currentTarget.value)}}/>
                 <button onClick={addTask}>+</button>
             </div>
             <ul>
