@@ -17,14 +17,18 @@ function TodoList(props: TodoListPropsType) {
     const setAllFilterValue = () => props.changeTodoListFilter("all")
     const setActiveFilterValue = () => props.changeTodoListFilter("active")
     const setCompletedFilterValue = () => props.changeTodoListFilter("completed")
-    const addTask = () => props.addTask(title)
-    let [title, setTitle] = useState('')
+    const addTask = () => { 
+        props.addTask(title)
+        setTitle("")
+    } 
+    let [title, setTitle] = useState<string>('')
     return (
         <div>
             <h3>{props.title}</h3>
             <div>
                 <input value={title} onChange={(e) =>{setTitle(e.currentTarget.value)}}/>
-                <button onClick={addTask}>+</button>
+                <button
+                 onClick={addTask}>+</button>
             </div>
             <ul>
                {tasks}
