@@ -4,8 +4,9 @@ import {FilterValuesType, TaskType} from './App'
 type TodoListPropsType = {
     title: string
     tasks: Array<TaskType>
-    changeTodoListFilter: (newFilterValue: FilterValuesType) => void
+    addTask: (title: string) => void
     removeTask: (taskID: string) => void
+    changeTodoListFilter: (newFilterValue: FilterValuesType) => void
 }
 
 function TodoList(props: TodoListPropsType) {
@@ -16,12 +17,13 @@ function TodoList(props: TodoListPropsType) {
     const setAllFilterValue = () => props.changeTodoListFilter("all")
     const setActiveFilterValue = () => props.changeTodoListFilter("active")
     const setCompletedFilterValue = () => props.changeTodoListFilter("completed")
+    const addTask = () => props.addTask('New Task')
     return (
         <div>
             <h3>{props.title}</h3>
             <div>
                 <input />
-                <button>+</button>
+                <button onClick={addTask}>+</button>
             </div>
             <ul>
                {tasks}
