@@ -26,7 +26,9 @@ function TodoList(props: TodoListPropsType) {
         <div>
             <h3>{props.title}</h3>
             <div>
-                <input value={title} onChange={(e) =>{setTitle(e.currentTarget.value)}}/>
+                <input value={title}
+                onChange={(e) =>{setTitle(e.currentTarget.value)}}
+                onKeyPress={(e) => { if (e.charCode === 13){addTask()}}}/>
                 <button
                  onClick={addTask}>+</button>
             </div>
