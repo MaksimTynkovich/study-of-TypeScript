@@ -3,6 +3,7 @@ import { FilterValuesType, TaskType } from './App'
 
 type TodoListPropsType = {
     title: string
+    todoListFilter: FilterValuesType
     tasks: Array<TaskType>
     addTask: (title: string) => void
     removeTask: (taskID: string) => void
@@ -55,6 +56,7 @@ function TodoList(props: TodoListPropsType) {
                     onChange={changeTitle}
                     onKeyPress={(e) => { if (e.charCode === 13) { addTask() } }} />
                 <button
+                    className={'active-filter'}
                     onClick={addTask}>+</button>
                     {error && <div className="error-text">{error}</div>}
             </div>
@@ -62,9 +64,9 @@ function TodoList(props: TodoListPropsType) {
                 {tasks}
             </ul>
             <div>
-                <button onClick={setAllFilterValue}>All</button>
-                <button onClick={setActiveFilterValue}>Active</button>
-                <button onClick={setCompletedFilterValue}>Completed</button>
+                <button className={props.todoListFilter === 'all' ? 'active-filter' : ''} onClick={setAllFilterValue}>All</button>
+                <button className={props.todoListFilter === 'active' ? 'active-filter' : ''} onClick={setActiveFilterValue}>Active</button>
+                <button className={props.todoListFilter === 'completed' ? 'active-filter' : ''} onClick={setCompletedFilterValue}>Completed</button>
             </div>
         </div>
     )

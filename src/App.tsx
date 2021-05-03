@@ -58,6 +58,7 @@ function App() {
             changeTodoListFilter={changeTodoListFilter} 
             removeTask = {removeTask}
             addTask = {addTask}
+            todoListFilter = {todoListFilter}
             changeTaskStatus = {changeTaskStatus}
             />
         </div>
