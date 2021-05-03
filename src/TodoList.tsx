@@ -7,12 +7,14 @@ type TodoListPropsType = {
     addTask: (title: string) => void
     removeTask: (taskID: string) => void
     changeTodoListFilter: (newFilterValue: FilterValuesType) => void
+    changeTaskStatus: (taskID: string) => void
 }
 
 function TodoList(props: TodoListPropsType) {
     const tasks = props.tasks.map(t => {
             const removeTask = () => props.removeTask(t.id)
-        return <li key={t.id}><input type="checkbox" checked={t.isDone} /> <span>{t.title}</span><button onClick={removeTask}>X</button></li>
+            const changeStatus = () => props.changeTaskStatus((t.id))
+        return <li key={t.id}><input type="checkbox" onChange={changeStatus} checked={t.isDone} /> <span>{t.title}</span><button onClick={removeTask}>X</button></li>
     })
     const setAllFilterValue = () => props.changeTodoListFilter("all")
     const setActiveFilterValue = () => props.changeTodoListFilter("active")
