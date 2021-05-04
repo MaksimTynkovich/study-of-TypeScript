@@ -8,6 +8,7 @@ type TodoListPropsType = {
     tasks: Array<TaskType>
     addTask: (title: string, todoListID: string) => void
     removeTask: (taskID: string, todoListID: string) => void
+    removeTodoList: (todoListID: string) => void
     changeTodoListFilter: (newFilterValue: FilterValuesType, todoListID: string) => void
     changeTaskStatus: (taskID: string, newIsDoneValue: boolean, todoListID: string) => void
 }
@@ -30,6 +31,8 @@ function TodoList(props: TodoListPropsType) {
             </li>
         )
     })
+
+    const removeTodoList = () => props.removeTodoList(props.id)
     const setAllFilterValue = () => props.changeTodoListFilter("all", props.id)
     const setActiveFilterValue = () => props.changeTodoListFilter("active", props.id)
     const setCompletedFilterValue = () => props.changeTodoListFilter("completed", props.id)
@@ -50,7 +53,7 @@ function TodoList(props: TodoListPropsType) {
     const [error, setError] = useState<string | null>(null)
     return (
         <div>
-            <h3>{props.title}</h3>
+            <h3>{props.title}<button onClick={removeTodoList}>X</button></h3>
             <div>
                 <input 
                     value={title}
