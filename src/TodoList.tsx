@@ -2,19 +2,21 @@ import React, { ChangeEvent, useState } from 'react';
 import { FilterValuesType, TaskType } from './App'
 
 type TodoListPropsType = {
+    id: string
     title: string
     todoListFilter: FilterValuesType
     tasks: Array<TaskType>
-    addTask: (title: string) => void
-    removeTask: (taskID: string) => void
-    changeTodoListFilter: (newFilterValue: FilterValuesType) => void
-    changeTaskStatus: (taskID: string, newIsDoneValue: boolean) => void
+    addTask: (title: string, todoListID: string) => void
+    removeTask: (taskID: string, todoListID: string) => void
+    changeTodoListFilter: (newFilterValue: FilterValuesType, todoListID: string) => void
+    changeTaskStatus: (taskID: string, newIsDoneValue: boolean, todoListID: string) => void
 }
 
 function TodoList(props: TodoListPropsType) {
     const tasks = props.tasks.map(t => {
-        const removeTask = () => props.removeTask(t.id)
-        const changeStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(t.id, e.currentTarget.checked)
+        const removeTask = () => props.removeTask(t.id, props.id)
+        const changeStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(t.id,
+             e.currentTarget.checked, props.id)
         return (
             <li key={t.id}>
                 <input type="checkbox"
@@ -28,9 +30,9 @@ function TodoList(props: TodoListPropsType) {
             </li>
         )
     })
-    const setAllFilterValue = () => props.changeTodoListFilter("all")
-    const setActiveFilterValue = () => props.changeTodoListFilter("active")
-    const setCompletedFilterValue = () => props.changeTodoListFilter("completed")
+    const setAllFilterValue = () => props.changeTodoListFilter("all", props.id)
+    const setActiveFilterValue = () => props.changeTodoListFilter("active", props.id)
+    const setCompletedFilterValue = () => props.changeTodoListFilter("completed", props.id)
     const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setError(null)
         setTitle(e.currentTarget.value)
@@ -38,7 +40,7 @@ function TodoList(props: TodoListPropsType) {
     const addTask = () => {
         const trimmedTitle = title.trim()
         if (trimmedTitle) {
-            props.addTask(trimmedTitle)
+            props.addTask(trimmedTitle, props.id)
         } else {
             setError('Title is required!')
         }
