@@ -37,26 +37,28 @@ function TodoList(props: TodoListPropsType) {
     const setAllFilterValue = () => props.changeTodoListFilter("all", props.id)
     const setActiveFilterValue = () => props.changeTodoListFilter("active", props.id)
     const setCompletedFilterValue = () => props.changeTodoListFilter("completed", props.id)
-    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
-        setError(null)
-        setTitle(e.currentTarget.value)
-    }
-    const addTask = () => {
-        const trimmedTitle = title.trim()
-        if (trimmedTitle) {
-            props.addTask(trimmedTitle, props.id)
-        } else {
-            setError('Title is required!')
-        }
-        setTitle("")
-    }
-    let [title, setTitle] = useState<string>('')
-    const [error, setError] = useState<string | null>(null)
+    // const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    //     setError(null)
+    //     setTitle(e.currentTarget.value)
+    // }
+    // const addTask = () => {
+    //     const trimmedTitle = title.trim()
+    //     if (trimmedTitle) {
+    //         props.addTask(trimmedTitle, props.id)
+    //     } else {
+    //         setError('Title is required!')
+    //     }
+    //     setTitle("")
+    // }
+    // let [title, setTitle] = useState<string>('')
+    // const [error, setError] = useState<string | null>(null)
+    // const errorMessage = error && <div className="error-text">{error}</div>
+    const addTask = (title: string) => props.addTask(title,props.id)
     return (
         <div>
             <h3>{props.title}<button onClick={removeTodoList}>X</button></h3>
             <AddItemForm addItem={addTask}/>
-            <div>
+            {/* <div>
                 <input 
                     value={title}
                     className={error ? 'error' : ''}
@@ -65,8 +67,8 @@ function TodoList(props: TodoListPropsType) {
                 <button
                     className={'active-filter'}
                     onClick={addTask}>+</button>
-                    {error && <div className="error-text">{error}</div>}
-            </div>
+                    {errorMessage}
+            </div> */}
             <ul>
                 {tasks}
             </ul>

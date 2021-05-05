@@ -5,23 +5,27 @@ type AddItemFormPropsType = {
 }
 
 function AddItemForm(props: AddItemFormPropsType) {
-    let [title, setTitle] = useState('')
+    let [title, setTitle] = useState<string>('')
     let [error, setError] = useState<string | null>(null)
 
-    const addItem = () => {
-        if (title.trim() !== '') {
-            props.addItem(title);
-            setTitle('')
-        } else {
-            setError('Title is required')
-        }
-    }
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+        setError(null)
         setTitle(e.currentTarget.value)
     }
 
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null);
+    const addItem = () => {
+        const trimmedTitle = title.trim()
+        if(trimmedTitle){
+            props.addItem(trimmedTitle)
+        } else {
+            setError('Title is required')
+        }
+        setTitle('')
+    }
+
+    const errorMessage = error && <div className="error-text">{error}</div>
+
+    const onKeyPressAddItem = (e: KeyboardEvent<HTMLInputElement>) => {
         if(e.charCode === 13){
             addItem();
         }
@@ -31,12 +35,12 @@ function AddItemForm(props: AddItemFormPropsType) {
         <div>
             <input 
             value={title}
-            onChange={onChangeHandler}
-            onKeyPress={onKeyPressHandler}
+            onChange={changeTitle}
+            onKeyPress={onKeyPressAddItem}
             className={error ? 'error' : ''}
             />
             <button onClick={addItem}>+</button>
-            {error && <div className="error-message">{error}</div>} 
+            {errorMessage} 
         </div>
     )
 }
