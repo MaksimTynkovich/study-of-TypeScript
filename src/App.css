@@ -7,15 +7,3 @@
   margin-right: 50px;
 }
 
-.error{
-  border: red 2px solid;
-  outline: transparent;
-}
-
-.error-text{
-  color: red;
-}
-
-.active-filter{
-  background-color: orange;
-}
