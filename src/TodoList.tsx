@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import { FilterValuesType, TaskType } from './App'
 import AddItemForm from './AddItemForm'
+import EditableSpan from './EditableSpan';
 
 type TodoListPropsType = {
     id: string
@@ -25,9 +26,7 @@ function TodoList(props: TodoListPropsType) {
                     checked={t.isDone}
                     onChange={changeStatus}
                 />
-
-
-                <span>{t.title}</span>
+                <EditableSpan title={t.title} />
                 <button onClick={removeTask}>X</button>
             </li>
         )
