@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { FilterValuesType, TaskType } from './App'
+import AddItemForm from './AddItemForm'
 
 type TodoListPropsType = {
     id: string
@@ -54,6 +55,7 @@ function TodoList(props: TodoListPropsType) {
     return (
         <div>
             <h3>{props.title}<button onClick={removeTodoList}>X</button></h3>
+            <AddItemForm addItem={addTask}/>
             <div>
                 <input 
                     value={title}

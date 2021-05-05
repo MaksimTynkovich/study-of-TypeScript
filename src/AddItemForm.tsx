@@ -1,4 +1,3 @@
-import { title } from 'node:process';
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 
 type AddItemFormPropsType = {
@@ -41,3 +40,5 @@ function AddItemForm(props: AddItemFormPropsType) {
         </div>
     )
 }
+
+export default AddItemForm
