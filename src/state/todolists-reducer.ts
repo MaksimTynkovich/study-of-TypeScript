@@ -17,13 +17,13 @@ type ChangeTodoListTitleAT = {
     todoListID: string
 }
 
-type ChangeTodoListFilterAT = {
+export type ChangeTodoListFilterAT = {
     type: 'CHANGE-TODOLIST-FILTER'
     newFilterValue: FilterValuesType
     todoListID: string
 }
 
-type ActionType = RemoveTodoListAT | AddTodoListAT | ChangeTodoListTitleAT | ChangeTodoListFilterAT
+export type ActionType = RemoveTodoListAT | AddTodoListAT | ChangeTodoListTitleAT | ChangeTodoListFilterAT
 
 export const todolistsReducer = (todoLists: Array<TodoListType>, action: ActionType) => {
     switch (action.type) {
