@@ -39,7 +39,7 @@ function AddItemForm(props: AddItemFormPropsType) {
                 error={!!error}
                 helperText={error}
             />
-            <IconButton color={"primary"} onClick={addItem}><AddBox/></IconButton>
+            <IconButton color={"secondary"} onClick={addItem}><AddBox/></IconButton>
         </div>
     )
 }
